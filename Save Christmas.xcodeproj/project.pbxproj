@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E11935781FA663DE00649BE6 /* Explosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = E11935771FA6633100649BE6 /* Explosion.sks */; };
+		E119357E1FA669B700649BE6 /* explosion.wav in Resources */ = {isa = PBXBuildFile; fileRef = E119357C1FA669A400649BE6 /* explosion.wav */; };
+		E119357F1FA669BB00649BE6 /* torpedo.wav in Resources */ = {isa = PBXBuildFile; fileRef = E119357D1FA669B200649BE6 /* torpedo.wav */; };
+		E11935811FA66A8F00649BE6 /* lose.wav in Resources */ = {isa = PBXBuildFile; fileRef = E11935801FA66A8C00649BE6 /* lose.wav */; };
+		E11935851FA66F8C00649BE6 /* bells.wav in Resources */ = {isa = PBXBuildFile; fileRef = E11935841FA66F8400649BE6 /* bells.wav */; };
 		E12E95A71FA530B3004711B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12E95A61FA530B3004711B4 /* AppDelegate.swift */; };
 		E12E95A91FA530B3004711B4 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = E12E95A81FA530B3004711B4 /* GameScene.sks */; };
 		E12E95AB1FA530B3004711B4 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = E12E95AA1FA530B3004711B4 /* Actions.sks */; };
@@ -15,9 +20,17 @@
 		E12E95B21FA530B3004711B4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E12E95B01FA530B3004711B4 /* Main.storyboard */; };
 		E12E95B41FA530B3004711B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E12E95B31FA530B3004711B4 /* Assets.xcassets */; };
 		E12E95B71FA530B3004711B4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E12E95B51FA530B3004711B4 /* LaunchScreen.storyboard */; };
+		E12E95C11FA53133004711B4 /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12E95BE1FA53133004711B4 /* MenuScene.swift */; };
+		E12E95C21FA5347D004711B4 /* Snowfield.sks in Resources */ = {isa = PBXBuildFile; fileRef = E12E95BF1FA53133004711B4 /* Snowfield.sks */; };
+		E12E95C31FA53485004711B4 /* MenuScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = E12E95C01FA53133004711B4 /* MenuScene.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E11935771FA6633100649BE6 /* Explosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Explosion.sks; sourceTree = "<group>"; };
+		E119357C1FA669A400649BE6 /* explosion.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = explosion.wav; sourceTree = "<group>"; };
+		E119357D1FA669B200649BE6 /* torpedo.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = torpedo.wav; sourceTree = "<group>"; };
+		E11935801FA66A8C00649BE6 /* lose.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = lose.wav; sourceTree = "<group>"; };
+		E11935841FA66F8400649BE6 /* bells.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bells.wav; sourceTree = "<group>"; };
 		E12E95A31FA530B3004711B4 /* Save Christmas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Save Christmas.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E12E95A61FA530B3004711B4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E12E95A81FA530B3004711B4 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -28,6 +41,9 @@
 		E12E95B31FA530B3004711B4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E12E95B61FA530B3004711B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E12E95B81FA530B3004711B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E12E95BE1FA53133004711B4 /* MenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
+		E12E95BF1FA53133004711B4 /* Snowfield.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Snowfield.sks; sourceTree = "<group>"; };
+		E12E95C01FA53133004711B4 /* MenuScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MenuScene.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +57,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E119356B1FA63E2400649BE6 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				E11935841FA66F8400649BE6 /* bells.wav */,
+				E11935801FA66A8C00649BE6 /* lose.wav */,
+				E119357C1FA669A400649BE6 /* explosion.wav */,
+				E119357D1FA669B200649BE6 /* torpedo.wav */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
 		E12E959A1FA530B3004711B4 = {
 			isa = PBXGroup;
 			children = (
@@ -60,6 +87,11 @@
 		E12E95A51FA530B3004711B4 /* Save Christmas */ = {
 			isa = PBXGroup;
 			children = (
+				E119356B1FA63E2400649BE6 /* Sounds */,
+				E11935771FA6633100649BE6 /* Explosion.sks */,
+				E12E95C01FA53133004711B4 /* MenuScene.sks */,
+				E12E95BE1FA53133004711B4 /* MenuScene.swift */,
+				E12E95BF1FA53133004711B4 /* Snowfield.sks */,
 				E12E95A61FA530B3004711B4 /* AppDelegate.swift */,
 				E12E95A81FA530B3004711B4 /* GameScene.sks */,
 				E12E95AA1FA530B3004711B4 /* Actions.sks */,
@@ -132,11 +164,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E119357F1FA669BB00649BE6 /* torpedo.wav in Resources */,
+				E119357E1FA669B700649BE6 /* explosion.wav in Resources */,
 				E12E95B21FA530B3004711B4 /* Main.storyboard in Resources */,
+				E11935851FA66F8C00649BE6 /* bells.wav in Resources */,
 				E12E95A91FA530B3004711B4 /* GameScene.sks in Resources */,
 				E12E95B41FA530B3004711B4 /* Assets.xcassets in Resources */,
 				E12E95B71FA530B3004711B4 /* LaunchScreen.storyboard in Resources */,
+				E11935781FA663DE00649BE6 /* Explosion.sks in Resources */,
+				E11935811FA66A8F00649BE6 /* lose.wav in Resources */,
 				E12E95AB1FA530B3004711B4 /* Actions.sks in Resources */,
+				E12E95C21FA5347D004711B4 /* Snowfield.sks in Resources */,
+				E12E95C31FA53485004711B4 /* MenuScene.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,6 +187,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E12E95AD1FA530B3004711B4 /* GameScene.swift in Sources */,
+				E12E95C11FA53133004711B4 /* MenuScene.swift in Sources */,
 				E12E95AF1FA530B3004711B4 /* GameViewController.swift in Sources */,
 				E12E95A71FA530B3004711B4 /* AppDelegate.swift in Sources */,
 			);
