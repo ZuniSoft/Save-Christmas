@@ -17,12 +17,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var player: SKSpriteNode!
     var livesArray: [SKSpriteNode]!
     var gameTimer: Timer!
-    var possiblePackages1 = ["package1", "package2", "tree1"]
-    var possiblePackages2 = ["alien4", "alien5", "alien6"]
-    var possiblePackages3 = ["alien7"]
-    var possiblePackages4 = ["alien8", "alien9", "alien10"]
+    var possiblePackages1 = ["package1", "candycane1", "tree1", "package2"]
+    var possiblePackages2 = ["gingerbread1", "package3", "wreath1", "package4"]
+    var possiblePackages3 = ["holly1", "reindeer1", "snowman1", "package6"]
+    var possiblePackages4 = ["star1", "sleigh1", "ornament1", "package7"]
+    var possiblePackages5 = ["package3", "package8", "package6", "package9"]
     let packageCategory: UInt32 = 0x1 << 1
-    let photonTorpedoCategory: UInt32 = 0x1 << 0
+    let candyTorpedoCategory: UInt32 = 0x1 << 0
     let motionManager = CMMotionManager()
     var xAcceleration: CGFloat = 0
     var scoreLabel: SKLabelNode!
@@ -59,6 +60,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         player = SKSpriteNode(imageNamed: "santa")
         player.position = CGPoint(x: self.frame.size.width / 2, y: player.size.height / 2 + 20)
+        player.zPosition = 2
         self.addChild(player)
         
         self.physicsWorld.gravity = CGVector(dx: 0, dy: 0)
@@ -69,6 +71,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreLabel.fontName = "GillSans-Bold"
         scoreLabel.fontSize = 36
         scoreLabel.fontColor = UIColor.purple
+        scoreLabel.zPosition = 1
         score = 0
         
         self.addChild(scoreLabel)
@@ -79,7 +82,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             timeInterval = 0.3
         }
         
-        gameTimer = Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(addAlien), userInfo: nil, repeats: true)
+        gameTimer = Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(addPackage), userInfo: nil, repeats: true)
         
         motionManager.accelerometerUpdateInterval = 0.1
         motionManager.startAccelerometerUpdates(to: OperationQueue.current!) { (data: CMAccelerometerData?, error: Error?) in
@@ -111,7 +114,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             secondBody = contact.bodyA
         }
         
-        if (firstBody.categoryBitMask & photonTorpedoCategory) != 0 && (secondBody.categoryBitMask & packageCategory) != 0 {
+        if (firstBody.categoryBitMask & candyTorpedoCategory) != 0 && (secondBody.categoryBitMask & packageCategory) != 0 {
                 torpedoDidCollideWithPackage(torpedoNode: firstBody.node as! SKSpriteNode, alienNode: secondBody.node as! SKSpriteNode)
         }
     }
@@ -138,44 +141,47 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         for live in 1 ... 3 {
             let liveNode = SKSpriteNode(imageNamed: "santa")
+            liveNode.zPosition = 1
             liveNode.position = CGPoint(x: self.frame.width - CGFloat(4 - live) * liveNode.size.width, y: self.frame.height - 60)
             self.addChild(liveNode)
             livesArray.append(liveNode)
         }
     }
     
-    @objc func addAlien() {
-        var possibleAliens = [String]()
+    @objc func addPackage() {
+        var possiblePackages = [String]()
         
         if score >= 0 && score < 300 {
-            possibleAliens = possiblePackages1
+            possiblePackages = possiblePackages1
         } else if score >= 300 && score < 550 {
-            possibleAliens = possiblePackages2
+            possiblePackages = possiblePackages2
         } else if score >= 550 && score < 800 {
-            possibleAliens = possiblePackages3
+            possiblePackages = possiblePackages3
+        } else if score >= 800 && score < 1024{
+            possiblePackages = possiblePackages4
         } else {
-            possibleAliens = possiblePackages4
+            possiblePackages = possiblePackages5
         }
         
-        possibleAliens = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: possibleAliens) as! [String]
+        possiblePackages = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: possiblePackages) as! [String]
         
-        let alien = SKSpriteNode(imageNamed: possibleAliens[0])
+        let package = SKSpriteNode(imageNamed: possiblePackages[0])
         let randomAlienPosition = GKRandomDistribution(lowestValue: 10, highestValue: Int(self.frame.width) - 10)
         let position = CGFloat(randomAlienPosition.nextInt())
-        alien.position = CGPoint(x: position, y: self.frame.size.height + alien.size.height)
+        package.position = CGPoint(x: position, y: self.frame.size.height + package.size.height)
         
-        alien.physicsBody = SKPhysicsBody(rectangleOf: alien.size)
-        alien.physicsBody?.isDynamic = true
-        alien.physicsBody?.categoryBitMask = packageCategory
-        alien.physicsBody?.contactTestBitMask = photonTorpedoCategory
-        alien.physicsBody?.collisionBitMask = 0
+        package.physicsBody = SKPhysicsBody(rectangleOf: package.size)
+        package.physicsBody?.isDynamic = true
+        package.physicsBody?.categoryBitMask = packageCategory
+        package.physicsBody?.contactTestBitMask = candyTorpedoCategory
+        package.physicsBody?.collisionBitMask = 0
         
-        self.addChild(alien)
+        self.addChild(package)
         
         let animationDuration: TimeInterval = 6
         
         var actionArray = [SKAction]()
-        actionArray.append(SKAction.move(to: CGPoint(x: position, y: -alien.size.height), duration: animationDuration))
+        actionArray.append(SKAction.move(to: CGPoint(x: position, y: -package.size.height), duration: animationDuration))
         
         actionArray.append(SKAction.run {
             self.run(self.loseSound)
@@ -199,7 +205,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         })
         
         actionArray.append(SKAction.removeFromParent())
-        alien.run(SKAction.sequence(actionArray))
+        package.run(SKAction.sequence(actionArray))
     }
     
     func fireTorpedo() {
@@ -212,7 +218,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         torpedoNode.physicsBody = SKPhysicsBody(circleOfRadius: torpedoNode.size.width / 2)
         torpedoNode.physicsBody?.isDynamic = true
         
-        torpedoNode.physicsBody?.categoryBitMask = photonTorpedoCategory
+        torpedoNode.physicsBody?.categoryBitMask = candyTorpedoCategory
         torpedoNode.physicsBody?.contactTestBitMask = packageCategory
         torpedoNode.physicsBody?.collisionBitMask = 0
         torpedoNode.physicsBody?.usesPreciseCollisionDetection = true
